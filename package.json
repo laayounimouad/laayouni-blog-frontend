@@ -17,7 +17,6 @@
     "express-edge": "^2.0.2",
     "express-session": "^1.17.2",
     "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.7",
-    "startbootstrap-clean-blog": "^6.0.3"
+    "nodemon": "^2.0.7"
   }
 }
