@@ -1,0 +1,38 @@
+@layout('layouts.app')
+
+@section('content')
+    <!-- Page Header -->
+    <header class="masthead">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading" style="color : #ffffff">
+              <h1>{{ article.title }}</h1>
+              <p class="post-meta">Posted by
+                <a href="#">{{ user.username }}</a>
+                on {{ article.createdAt }} <br>
+                <B>Tags : </B>
+              @each(tag in tags)
+              &rarr;{{tag.name}}
+                @endeach
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            {{ article.content }}
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+@endsection

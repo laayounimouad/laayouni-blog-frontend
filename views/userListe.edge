@@ -1,0 +1,40 @@
+@layout('layouts.app')
+
+@section('content')
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/addModify.js"></script>
+    </head>
+<!-- Page Header -->
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Users Liste</h1>
+          </div>
+        </div>
+      </div>
+      </div>
+  </header>
+  <div style="margin: 0px 0px 20px;">
+  <div class="table-affichage" data-url="http://localhost:3001/users?page=1&limit=10" style="margin: 0px 0px 0px;">
+  </div>
+  <div  class="float-end">
+    <ul class="pagination text-center">
+      <li id="previous" class="disabled"><a>&lt;</a></li>
+      <li id="next" class=""><a>&gt;</a></li>
+  </ul>
+</div>
+</div>
+<button type="button" onclick="add()" class="btn btn-success">Ajouter</button>
+
+<div class="ajout">
+</div>
+<script src="/js/main.js">
+    
+</script>
+@endsection

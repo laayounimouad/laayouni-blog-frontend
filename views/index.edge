@@ -1,0 +1,42 @@
+@layout('layouts.app')
+
+@section('content')
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading" style="color:black">
+                    <h1 id="name">Blog interface</h1>
+                    <span class="subheading">created by mouad laayouni</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        
+  <div style="margin: 0px 0px 20px;">
+    <div id="article-affichage" style="margin: 0px 0px 0px;">
+    </div>
+    <div  class="float-end">
+     <div class="clearfix">
+    <a id="previous" class="disabled btn btn-primary float-left" href="#name">&larr;Newest Posts </a>
+    <a id="next" class="btn btn-primary float-right" href="#name">Older Posts &rarr;</a> 
+     </div>
+  </div>
+  </div>
+
+        <!-- Pager -->
+        
+          {{--  <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>  --}}
+       
+      </div>
+    </div>
+  </div>
+  <script  src="/js/articlePagination.js"></script>
+@endsection
