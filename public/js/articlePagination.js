@@ -69,10 +69,11 @@
         console.log(`url :::: ${url}`);
         fillTable(root,url);
     }
-    function nextPage(){
+     function nextPage(){
         page = parseInt(page)+1;
         url = `http://localhost:3001/articles?page=${page}&limit=10`;
         console.log(`url :::: ${url}`);
         fillTable(root,url);
     }
+    
 }

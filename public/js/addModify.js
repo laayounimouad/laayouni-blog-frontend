@@ -1,9 +1,9 @@
 
 
 var addForm ;
-
-
 var modifyForm ;
+
+
 function add(){
     const form = document.querySelector(".ajout");
     form.innerHTML=`
@@ -14,25 +14,26 @@ function add(){
     <div class="control-group">
       <div class="form-group floating-label-form-group controls">
         <label>Username</label>
-        <input type="text" name="username" placeholder="Username" class="form-control">
+        <input type="text" name="username" placeholder="Username" class="form-control" required>
       </div>
     </div>
     <div class="control-group">
       <div class="form-group floating-label-form-group controls">
         <label>Email</label>
-        <input type="email" name="email" placeholder="Email" class="form-control">
+        <input type="email" name="email" placeholder="Email" class="form-control" required>
       </div>
     </div>
     <div class="control-group">
       <div class="form-group floating-label-form-group controls">
         <label>Password</label>
-        <input type="password" name="password" placeholder="Password" class="form-control">
+        <input type="password" name="password" placeholder="Password" class="form-control" required>
       </div>
     </div>
     <div class="control-group">
         <div class="form-group floating-label-form-group controls">
           <label class="form-label">Role</label>
-          <select id="role" name="role" class="form-select">
+          <select id="role" name="role" class="form-select" required>
+          <option value="" selected disabled hidden>Choose here</option>
             <option value="admin">admin</option>
             <option value="author">author</option>
             <option value="guest">guest</option>
@@ -41,7 +42,7 @@ function add(){
       </div>
       
     <div class="form-group my-4 text-center">
-      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      <button type="submit" onclick="refresh(1)" class="btn btn-primary">Enregistrer</button>
       
     </div>
   </form>
@@ -57,7 +58,16 @@ async function modify(id){
     const response =await( await fetch(`http://localhost:3001/users/${id}`) ).json();
 
     const form = document.querySelector(".ajout");
-
+    var admin =""
+    var author=""
+    var guest=""
+    if(response.role == "admin") admin = "selected"
+    else admin =""
+    if(response.role == "author") author = "selected"
+    else author =""
+    if(response.role == "guest") guest = "selected"
+    else guest =""
+    
     form.innerHTML=`
     <div class="container">
 <div class="row">
@@ -73,7 +83,7 @@ async function modify(id){
     <div class="control-group">
       <div class="form-group floating-label-form-group controls">
         <label>Username</label>
-        <input type="text" name="username" placeholder="Username" class="form-control" value="${response.username}">
+        <input type="text" name="username" placeholder="Username" class="form-control" value="${response.username}" required >
       </div>
     </div>
     <div class="control-group">
@@ -91,16 +101,16 @@ async function modify(id){
     <div class="control-group">
         <div class="form-group floating-label-form-group controls">
           <label class="form-label">Role</label>
-          <select id="role" name="role" class="form-select" value="${response.role}">
-            <option value="admin">admin</option>
-            <option value="author">author</option>
-            <option value="guest">guest</option>
+          <select id="role" name="role" class="form-select" >
+            <option value="admin" ${admin}>admin</option>
+            <option value="author" ${author}>author</option>
+            <option value="guest" ${guest}>guest</option>
           </select>
         </div>
       </div>
       
     <div class="form-group my-4 text-center">
-      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      <button type="submit"  class="btn btn-primary">Enregistrer</button>
       
     </div>
   </form>
@@ -113,7 +123,8 @@ async function modify(id){
 }
 async function supprimer(id){
     var data = JSON.stringify({id:id})
-    const response = await fetch("http://localhost:3001/users", {
+    const form = document.querySelector(".ajout");
+    await fetch("http://localhost:3001/users", {
         method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Content-Type': 'application/json',
@@ -122,6 +133,7 @@ async function supprimer(id){
         body: data
       });
       form.innerHTML = `<h3 style="margin-left: 40%;"> utilisateur a été supprimer</h3`
+
 }
 async function handleFormSubmit(event) {
     event.preventDefault();
@@ -136,11 +148,15 @@ async function handleFormSubmit(event) {
         const formData = new FormData(form);
         const responseData = await postFormDataAsJson({ url, formData, method });
         console.log(responseData)
-
+        var forme = document.querySelector(".ajout");
+  forme.innerHTML = `<h3 style="margin-left: 40%;"> the user has been succesfully added/modified</h3`
 
     } catch (error) {
         console.error(error);
+        var forme = document.querySelector(".ajout");
+  forme.innerHTML = `<h3 style="margin-left: 40%;"> !!ERROR!! verify the informations</h3`+form.innerHTML
     }
+    
 }
  
 async function postFormDataAsJson({ url, formData, method }) {

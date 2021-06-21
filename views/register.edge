@@ -22,26 +22,26 @@
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Username</label>
-            <input type="text" name="username" placeholder="Username" class="form-control">
+            <input type="text" name="username" placeholder="Username" class="form-control" autofocus required>
           </div>
         </div>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Email</label>
-            <input type="email" name="email" placeholder="Email" class="form-control">
+            <input type="email" name="email" placeholder="Email" class="form-control" required>
           </div>
         </div>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Password</label>
-            <input type="password" name="password" placeholder="Password" class="form-control">
+            <input type="password" name="password" placeholder="Password" class="form-control" required>
           </div>
         </div>
         <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label class="form-label">Role</label>
-              <select id="role" name="role" class="form-select">
-                <option value="admin">admin</option>
+              <select id="role" name="role" class="form-select" required>
+                <option value="" selected disabled hidden>Choose here</option>
                 <option value="author">author</option>
                 <option value="guest">guest</option>
               </select>

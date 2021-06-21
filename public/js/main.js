@@ -57,8 +57,8 @@
                 var tabCell = tr.insertCell(-1);
                 tabCell.innerHTML =
                 ` 
-                <button type="button" onclick="modify(${data[i][col[0]]});" class="btn btn-success">Modify</button>
-                <button type="button" onclick="supprimer(${data[i][col[0]]});" class="btn btn-danger">Delete</button>
+                <button type="button" onclick="modify(${data[i][col[0]]});refresh();" class="btn btn-success">Modify</button>
+                <button type="button" onclick="supprimer(${data[i][col[0]]}); refresh();" class="btn btn-danger">Delete</button>
                 `
             }
     }
@@ -92,4 +92,12 @@
         console.log(`url :::: ${url}`);
         fillTable(root,url);
     }
+    function refresh(nbr=null){
+        page = parseInt(page);
+        if(nbr!=null) url = `http://localhost:3001/users?page=${nbr}&limit=10`;
+        else url = `http://localhost:3001/users?page=${page}&limit=10`;
+        console.log(`url :::: ${url}`);
+        fillTable(root,url);
+    }
+    
 }
